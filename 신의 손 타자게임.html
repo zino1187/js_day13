@@ -70,11 +70,13 @@ var wordArray=[
 ];
 var stage;
 var box;
+var interval=1000; //각 스테이지마다 속도를 결정하는 변수
 function init(){
 	stage=document.getElementById("stage");
 	box=document.getElementById("box");
 	createHP();
 	createWord();
+	gameLoop();
 }
 //hp 생성 
 function createHP(){
@@ -88,7 +90,11 @@ function createWord(){
 		var word=new Word(stage,wordArray[0][i],i*100,-getRandom(100));
 	}
 }
-
+function gameLoop(){
+	//등장한 모든 케릭터들의 동작함수를 호출...
+	
+	setTimeout("gameLoop()",interval);
+}
 addEventListener("load",function(){
 	init();
 });

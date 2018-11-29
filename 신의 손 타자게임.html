@@ -19,16 +19,32 @@
 	width:100%;
 	height:150px;
 	background:blue;
+	overflow:hidden; /*자식 플롯되면, 부모요소가 그 공간을 
+							인식해야 하기 때문에 주는 속성*/
 }
 #score{
 	width:33.33%;
 	height:100%;
 	background:red;
+	float:left;
 }
 .hp_area{
 	width:33.33%;
 	height:100%;
 	background:green;
+	float:left;
+}
+#stage_info{
+	width:33.33%;
+	height:100%;
+	background:pink;
+	float:left;
+}
+.input_area{
+	width:100%;
+	height:50px;
+	text-align:center;
+	background:#ccc;
 }
 
 </style>

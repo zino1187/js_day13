@@ -70,11 +70,14 @@ var wordArray=[
 ];
 var stage;
 var box;
-var interval=1000; //각 스테이지마다 속도를 결정하는 변수
+var interval=100; //각 스테이지마다 속도를 결정하는 변수
 var wordObject=[]; //워드 객체를 담을 배열
+var hpArray=[];//생성된 hp 를 담을 배열
 
 function init(){
 	stage=document.getElementById("stage");
+	stage.style.height=500+"px";
+
 	box=document.getElementById("box");
 	createHP();
 	createWord();
@@ -84,12 +87,13 @@ function init(){
 function createHP(){
 	for(var i=0;i<9;i++){
 		var hp=new HP(box);
+		hpArray.push(hp);
 	}
 }
 //게임에 사용될 단어들 등장시키기!!
 function createWord(){
 	for(var i=0;i<wordArray[0].length;i++){
-		var word=new Word(stage,wordArray[0][i],i*100,-getRandom(100));
+		var word=new Word(stage,wordArray[0][i],i*100,-getRandom(200));
 
 		wordObject.push(word);
 	}

@@ -95,6 +95,15 @@ function gameLoop(){
 	for(var i=0;i<weapon.length;i++){				
 		weapon[i].tick();
 		weapon[i].render();
+		//현재 i번째 총알이 화면 한계점을 넘어섰는지 판단
+		if(weapon[i].x >=1280){
+			//화면에서 제거
+			//실제 화면에서 제거될 대상은 img 돔이지, 객체
+			//자체는 아니다..주의!!!
+			stage.removeChild(weapon[i].img);
+			//배열 명단에서도 제거 
+			weapon.splice(weapon[i],1);
+		}
 	}
 	//}
 	setTimeout("gameLoop()",10);

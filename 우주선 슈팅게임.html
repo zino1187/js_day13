@@ -17,7 +17,7 @@
 var stage;
 var x=0;//배경 이미지의 x축 위치를 결정하는 변수
 var ship;
-var weapon;
+var weapon=[];//총알이 여러개 이므로..
 
 function init(){
 	stage=document.getElementById("stage");	
@@ -74,7 +74,12 @@ function stop(){
 }
 //무기를 발사한다!!
 function fire(type,w,h,vx){
-	weapon=new Bullet(stage, "../res/"+type+".png", w,h,ship.x,ship.y,vx,0);
+	var wp=new Bullet(stage, "../res/"+type+".png", w,h,ship.x,ship.y,vx,0);
+
+	weapon.push(wp);//총알이 태어나면 명단에 집어넣음
+	//왜? 넣어야 함??? 
+	//gameLoop() 함수가 태어난 애들을 대상으로 언제나
+	//tick() , render() 호출해주므로...
 }
 
 
@@ -84,12 +89,14 @@ function gameLoop(){
 	bgEffect();
 	ship.tick();//속성값 변화줌
 	ship.render();//그려짐
-	if(weapon!=undefined){//프로그램 가동과 동시에 총알을 누른적이 없으면 
+	//if(weapon!=undefined){//프로그램 가동과 동시에 총알을 누른적이 없으면 
 		//weapon 변수엔 총알이 채워지지 않은 undefined
 		//이므로 아래의 코드는 에러가 난다..
-		weapon.tick();
-		weapon.render();
+	for(var i=0;i<weapon.length;i++){				
+		weapon[i].tick();
+		weapon[i].render();
 	}
+	//}
 	setTimeout("gameLoop()",10);
 }
 addEventListener("load", function(){

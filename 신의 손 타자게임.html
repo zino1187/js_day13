@@ -15,6 +15,7 @@
 	height:500px;
 	background:dodgerblue;
 	position:relative;
+	overflow:hidden;
 }
 .info{
 	width:100%;
@@ -60,6 +61,7 @@
 </style>
 <script src="./HP.js"></script>
 <script src="./Word.js"></script>
+<script src="../lib/common.js"></script>
 <script>
 var wordArray=[
 	["마우스","화성","비빔밥","자전거","오뚜기","유자차","감기","3호선","오라클","영화"],
@@ -82,7 +84,9 @@ function createHP(){
 }
 //게임에 사용될 단어들 등장시키기!!
 function createWord(){
-	var word=new Word(stage,wordArray[0][0],100,-10);
+	for(var i=0;i<wordArray[0].length;i++){
+		var word=new Word(stage,wordArray[0][i],i*100,-getRandom(100));
+	}
 }
 
 addEventListener("load",function(){

@@ -22,10 +22,12 @@ class Ship{
 	}
 	//tick() 이 객체의 속성변화를 처리하는 메서드 
 	tick(){
-		this.x=this.x+10;
-		this.y=this.y+10;
+		this.x=this.x+velX;
+		this.y=this.y+velY;
 	}
 	//화면에 어떻게 그려질지를 결정하는 render()	
 	render(){
+		this.img.style.left=this.x+"px";
+		this.img.style.top=this.y+"px";
 	}
 }

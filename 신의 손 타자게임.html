@@ -38,6 +38,7 @@
 #box{
 	width:150px;
 	height:100%;
+	margin:auto;
 }
 #stage_info{
 	width:33.33%;
@@ -58,6 +59,12 @@
 </style>
 <script src="./HP.js"></script>
 <script>
+var wordArray=[
+	["마우스","화성","비빔밥","자전거","오뚜기","유자차","감기","3호선","오라클","영화"],
+	["커피","단성사","미국","하드","뉴스","하늘","여행","가방","모니터","소설"],
+	["머그컵","안드로이드","목성","4계절","지리산","구름","아버지","노트","창문","고양이"]
+];
+
 var box;
 function init(){
 	box=document.getElementById("box");

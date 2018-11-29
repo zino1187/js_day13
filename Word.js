@@ -18,13 +18,18 @@ class Word{
 	}
 	move(){
 		//y값이 stage의 한계 - 나의키 를 넘어섰나?
-		var h=parseInt(this.span.style.fontSize);
 
+		var h=parseInt(this.span.style.fontSize);
 		if(this.y >= (parseInt(this.container.style.height)-h) ){
 			this.span.style.background="yellow";
+
 			//hp의 백그라운드 빼기!!
+			hpArray[count].setBg("none");
+
+			count++;
 
 		}
+
 		this.y+=5;//기존 y값을 5씩 누적!!
 		this.span.style.top=this.y+"px";
 	}

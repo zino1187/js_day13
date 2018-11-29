@@ -64,17 +64,23 @@ var wordArray=[
 	["커피","단성사","미국","하드","뉴스","하늘","여행","가방","모니터","소설"],
 	["머그컵","안드로이드","목성","4계절","지리산","구름","아버지","노트","창문","고양이"]
 ];
-
+var stage;
 var box;
 function init(){
+	stage=document.getElementById("stage");
 	box=document.getElementById("box");
 	createHP();
+	createWord();
 }
 //hp 생성 
 function createHP(){
 	for(var i=0;i<9;i++){
 		var hp=new HP(box);
 	}
+}
+//게임에 사용될 단어들 등장시키기!!
+function createWord(){
+	
 }
 addEventListener("load",function(){
 	init();

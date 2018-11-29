@@ -22,8 +22,8 @@ class Ship{
 	}
 	//tick() 이 객체의 속성변화를 처리하는 메서드 
 	tick(){
-		this.x=this.x+velX;
-		this.y=this.y+velY;
+		this.x=this.x+this.velX;
+		this.y=this.y+this.velY;
 	}
 	//화면에 어떻게 그려질지를 결정하는 render()	
 	render(){

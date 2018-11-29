@@ -26,6 +26,14 @@ class Word{
 			//hp의 백그라운드 빼기!!
 			hpArray[count].setBg("none");
 
+			//화면에서 물리적 제거 
+			this.container.removeChild(this.span);//자살
+
+			//배열명단에서 제거
+			//내가살던 방번호 indexOf
+			//현재 word가 머물렀던 배열의 index를 구한다!!
+			wordObject.splice(wordObject.indexOf(this) ,1);
+			
 			count++;
 
 		}

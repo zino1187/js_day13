@@ -11,6 +11,7 @@
 	background:url("../res/game_bg.jpg");
 }
 </style>
+<script src="./Ship.js"></script>
 <script>
 var stage;
 var x=0;//배경 이미지의 x축 위치를 결정하는 변수
@@ -18,6 +19,7 @@ var x=0;//배경 이미지의 x축 위치를 결정하는 변수
 function init(){
 	stage=document.getElementById("stage");	
 	bgEffect();
+	createHero();
 	gameLoop();
 }
 //배경이 횡방향으로 흘러가게..
@@ -25,6 +27,11 @@ function bgEffect(){
 	x-=5;
 	stage.style.backgroundPosition=x+"px 0px";
 }
+//주인공 우주선 생성
+function createHero(){
+	var ship=new Ship(stage,"../res/plane.png",100,60,50,150,5,5);
+}
+
 //게임에 등장할 배경, 아이템, 적군, 히어로 등등의 모든 동작을 여기서
 //호출함...(게임 프레임웍)
 function gameLoop(){

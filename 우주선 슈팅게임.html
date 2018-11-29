@@ -12,10 +12,12 @@
 }
 </style>
 <script src="./Ship.js"></script>
+<script src="./Bullet.js"></script>
 <script>
 var stage;
 var x=0;//배경 이미지의 x축 위치를 결정하는 변수
 var ship;
+var weapon;
 
 function init(){
 	stage=document.getElementById("stage");	
@@ -34,11 +36,47 @@ function createHero(){
 }
 //키보드 이벤트 따라 우주선을 제어한다!!
 function control(){
-	ship.velX=5;
-	ship.velX=-5;
-	ship.velY=5;
-	ship.velY=-5;
+	var key=event.keyCode;
+	//else ~ if문 용도 : 
+	//사실 if만써도 프로그램 수행결과는 같다..하지만, 
+	//다중 조건을 판단함에 있어 if문만 사용하면, if문 이외의 경우
+	//까지 모두 cpu가 수행하려고 하므로, 경제적이지 못하다..
+	//이 경우 else~if문을 이용한다..
+	//주의)  조건 판단 대상이 많을 경우 유용...
+	//단일 조건 : if 
+	//흑백논리 : if ~ else : 삼항연산자 
+	//다중 조건 : else ~ if , switch~case
+	/*
+	if(key==39){
+		ship.velX=5;
+	}else if(key==37){
+		ship.velX=-5;
+	}else if(key==38){
+		ship.velY=-5;
+	}else if(key==40){
+		ship.velY=5;
+	}
+	*/
+	switch(key){
+		case 37:ship.velX=-5;break;
+		case 39:ship.velX=5;break;
+		case 38:ship.velY=-5;break;
+		case 40:ship.velY=5;break;
+		case 32:fire("ball",25,20,15);break;//총알
+		case 17:fire("bomb",60,40,10);break;//폭탄
+	}
 }
+
+//키보드를 떼면, 주인공의 velX, velY 를 모두 0으로...
+function stop(){
+	ship.velX=0;
+	ship.velY=0;
+}
+//무기를 발사한다!!
+function fire(type,w,h,vx){
+	weapon=new Bullet(stage, "../res/"+type+".png", w,h,ship.x,ship.y,vx,0);
+}
+
 
 //게임에 등장할 배경, 아이템, 적군, 히어로 등등의 모든 동작을 여기서
 //호출함...(게임 프레임웍)
@@ -46,6 +84,12 @@ function gameLoop(){
 	bgEffect();
 	ship.tick();//속성값 변화줌
 	ship.render();//그려짐
+	if(weapon!=undefined){//프로그램 가동과 동시에 총알을 누른적이 없으면 
+		//weapon 변수엔 총알이 채워지지 않은 undefined
+		//이므로 아래의 코드는 에러가 난다..
+		weapon.tick();
+		weapon.render();
+	}
 	setTimeout("gameLoop()",10);
 }
 addEventListener("load", function(){
@@ -53,7 +97,7 @@ addEventListener("load", function(){
 });
 </script>
 </head>
-<body onKeyDown="control()">
+<body onKeyDown="control()" onKeyUp="stop()">
 	<div id="stage"></div>
 </body>
 </html>

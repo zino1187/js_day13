@@ -33,6 +33,11 @@
 	height:100%;
 	background:green;
 	float:left;
+	text-align:center;
+}
+#box{
+	width:150px;
+	height:100%;
 }
 #stage_info{
 	width:33.33%;
@@ -51,6 +56,23 @@
 	text-align:center;
 }
 </style>
+<script src="./HP.js"></script>
+<script>
+var box;
+function init(){
+	box=document.getElementById("box");
+	createHP();
+}
+//hp 생성 
+function createHP(){
+	for(var i=0;i<9;i++){
+		var hp=new HP(box);
+	}
+}
+addEventListener("load",function(){
+	init();
+});
+</script>
 </head>
 <body>
 	<div class="wrapper">
